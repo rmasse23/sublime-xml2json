@@ -23,6 +23,7 @@ def xml2json(fulltext,pretty=False):
 		jsonObj = xmltodict.parse(fulltext)
 		if pretty:
 			jsonStr = json.dumps(jsonObj,indent=4)
+			view.set_syntax_file("Packages/JavaScript/JSON.tmLanguage")
 		else:
 			jsonStr = json.dumps(jsonObj)
 	except Exception as e:
@@ -53,6 +54,7 @@ def json2xml(fulltext,pretty=False):
 			newText = '{"root":' + fulltext + '}' #try to add a wrapper
 			jsonObj = json.JSONDecoder(object_pairs_hook=OrderedDict).decode(fulltext)
 			xmlStr = xmltodict.unparse(jsonObj,pretty=pretty)
+			view.set_syntax_file("Packages/XML/XML.tmLanguage")
 		except Exception as e:
 			newViewWithText(newText)
 			sublime.error_message('json2xml error!!: ' + e.message)
